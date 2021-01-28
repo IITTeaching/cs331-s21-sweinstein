@@ -79,12 +79,33 @@ def test3():
 
 # implement this function
 def gen_pattern(chars):
-  longest=1+4*(len(chars)-1)
-  chars= chars[::-1]
-  for x in list(range(len(chars)))+list(range(len(chars)-1,-1,-1)):
-      query=chars[:x+1]+chars[:x][::-1]
-      query='.'.join(query).center(longest,'.')
-      print(query)
+    length = len(chars)*4 - 3
+    height = len(chars)*2-1
+    letters = 1 #unique letters
+    middle = height // 2 +1
+    grid = []
+    for i in range(height//2+1):
+        row = ""
+        dotside = (length - letters*4 + 3)//2
+        if(dotside>0):
+            row += dotside * "."
+        for i in range(1,letters+1):
+            row += (chars[i*-1])
+            row += "."
+        newrow = row[:-1]
+        for i in range(len(newrow)-2,-1,-1):
+            newrow +=row[i]
+        grid.append(newrow)
+        letters +=1
+    newgrid = grid
+    for i in range(len(newgrid)-2,-1,-1):
+        newgrid.append(grid[i])
+    result = ""
+    for i in newgrid:
+      result += i
+      result += "\n"
+    print(result)
+
 
 def test4():
     tc = unittest.TestCase()
