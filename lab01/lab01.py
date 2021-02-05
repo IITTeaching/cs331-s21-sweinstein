@@ -56,15 +56,15 @@ def integer_right_triangles(p):
     triples = []
     total=0
     for a in range(1, p):
-        for b in range(a, p-a):     
+        for b in range(a, p-a):
             c = p - (a + b)
             if a**2 + b**2 == c**2:
-                 triples.append((a, b, c)) 
+                 triples.append((a, b, c))
                  total+=1
             elif a**2 + b**2 > c**2:
-                break    
-    print(total)
-    print(triples)
+                break
+    #print(total)
+    #print(triples)
     return total
 
 def test3():
