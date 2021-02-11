@@ -36,23 +36,17 @@ def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
     """
     low = 0
     high = len(lst) - 1
-    mid = 0
- 
-    while low <= high:
- 
-        mid = (high + low) // 2 
-
-        if compare(lst[mid],elem)==-1:
+    while low < high:
+        mid = (low + high) // 2
+        if compare(lst[mid],elem) == -1:
             low = mid + 1
- 
-        elif compare(lst[mid],elem)==1:
+        elif compare(lst[mid],elem) == 1:
             high = mid - 1
- 
+        elif high != low:
+            high = mid
         else:
             return mid
- 
- 
-    return -1
+    return low if compare(lst[left],elem) == 0 else -1
 
 class Student():
     """Custom class to test generic sorting and searching."""
@@ -199,10 +193,10 @@ class SuffixArray():
         """
         Creates a suffix array for document (a string).
         """
-        self.document=document
-        lst=list(range(len(document)))
+        self.document = document
+        lst = list(range(0,len(document)))
         self.lst = mysort(lst, lambda x,y: 0 if document[x:] == document[y:] else (-1 if document[x:] < document[y:] else 1))
-
+        #print(self.lst)
 
 
     def positions(self, searchstr: str):
@@ -211,13 +205,12 @@ class SuffixArray():
         """
         return [mybinsearch(self.lst, searchstr, lambda x,y: 0 if self.document[x:][:min(len(self.document)-x,len(y))] == y else (-1 if self.document[x:] < y else 1))]
 
-
     def contains(self, searchstr: str):
         """
         Returns true of searchstr is coontained in document.
         """
         return mybinsearch(self.lst, searchstr, lambda x,y: 0 if self.document[x:][:min(len(self.document)-x,len(y))] == y else (-1 if self.document[x:] < y else 1)) != -1
-
+    
 # 40 Points
 def test3():
     """Test suffix arrays."""
