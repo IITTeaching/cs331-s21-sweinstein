@@ -248,7 +248,7 @@ def test3_2():
     s = SuffixArray(md_text[0:1000])
     tc.assertTrue(s.contains("Moby Dick"))
     tc.assertTrue(s.contains("Herman Melville"))
-    tc.assertEqual(s.positions("Moby Dick"), [428])
+    tc.assertEqual(s.positions("Moby Dick"), [427])
 
 
 #################################################################################
