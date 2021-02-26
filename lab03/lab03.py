@@ -46,7 +46,7 @@ def mybinsearch(lst: List[T], elem: S, compare: Callable[[T, S], int]) -> int:
             high = mid
         else:
             return mid
-    return low if compare(lst[left],elem) == 0 else -1
+    return low if compare(lst[low],elem) == 0 else -1
 
 class Student():
     """Custom class to test generic sorting and searching."""
